@@ -1,0 +1,300 @@
+.new-year-text {
+    color: #ffd700;
+    font-size: 4rem;
+    animation: zoomIn 1s ease-out, glow 2s infinite alternate;
+    text-shadow: 0 0 20px #ff0000;
+}
+
+@keyframes zoomIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* 保持原有样式不变 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 禁止移动端长按选中文字 */
+    -webkit-user-select: none;
+    user-select: none;
+    /* 移除移动端点击高亮 */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: radial-gradient(ellipse at bottom, #2c0000 0%, #000000 100%);
+    color: #fff;
+    font-family: "Ma Shan Zheng", "STKaiti", "KaiTi", "Microsoft YaHei", cursive, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 引入谷歌字体（如果有网络）或者使用系统自带书法字体 */
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
+.container {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.3); /* 半透明背景提升文字可读性 */
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.title {
+    font-size: 5rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 0px #b8860b, 0 0 20px #ff0000;
+    margin-bottom: 10px;
+    letter-spacing: 10px;
+}
+
+.subtitle {
+    font-size: 2rem;
+    color: #ffebd7;
+    margin-bottom: 30px;
+    font-weight: lighter;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.countdown {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 20px;
+    text-shadow: 0 0 5px #000;
+    min-height: 150px; /* 防止文字变化时高度跳动 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffd700;
+    margin-top: 15px;
+    font-family: "Courier New", monospace; /* 数字用等宽字体防止跳动 */
+}
+
+/* 灯笼样式优化 */
+.lantern-box {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    pointer-events: none; /* 防止遮挡点击 */
+}
+
+.lantern {
+    width: 100px;
+    height: 140px;
+    background: linear-gradient(to right, #e60000, #ff4d4d, #e60000);
+    border-radius: 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffd700;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px #800000;
+    animation: swing 4s infinite ease-in-out alternate;
+    border-top: 2px solid #ffd700;
+    border-bottom: 2px solid #ffd700;
+}
+
+/* 灯笼穗子 */
+.lantern::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    width: 4px;
+    height: 40px;
+    background: #ffd700;
+    box-shadow: 0 0 5px #ff0000;
+}
+
+.lantern::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    width: 4px;
+    height: 20px;
+    background: #333;
+}
+
+/* 简单的灯笼摆动动画 */
+@keyframes swing {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff0000; }
+    to { text-shadow: 0 0 20px #ff4d4d, 0 0 30px #ff0000; }
+}
+
+/* 烟花画布 */
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* 让点击事件穿透到背景（如果需要交互）或者直接在JS处理 */
+}
+
+/* 背景城市剪影 (CSS绘制) */
+.skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: 
+        linear-gradient(to top, #000 0%, transparent 100%),
+        repeating-linear-gradient(90deg, 
+            transparent 0, transparent 20px, 
+            #0a0a0a 20px, #0a0a0a 40px
+        );
+    opacity: 0.6;
+    z-index: 2;
+    mask-image: linear-gradient(to top, black 50%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
+}
+
+/* 远山背景 */
+.mountains {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh;
+    background: linear-gradient(to top, #110000 0%, transparent 100%);
+    border-radius: 100% 100% 0 0 / 20% 20% 0 0;
+    transform: scaleX(1.5);
+    z-index: 1;
+    opacity: 0.8;
+}
+
+/* 装饰性边框 */
+.frame {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 20;
+}
+.frame::before {
+    content: "❀";
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 30px;
+    color: #ffd700;
+}
+.frame::after {
+    content: "❀";
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    font-size: 30px;
+    color: #ffd700;
+    transform: rotate(180deg);
+}
+
+/* --- 移动端适配 --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 25px 15px;
+        width: 90%;
+        margin-top: 20px; /* 给灯笼留出空间 */
+    }
+
+    .title {
+        font-size: 3rem; /* 缩小标题 */
+        letter-spacing: 5px;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+    }
+
+    .lantern-box {
+        gap: 60px; /* 减小灯笼间距 */
+        top: -70px; /* 调整灯笼垂直位置 */
+    }
+
+    .lantern {
+        width: 60px;
+        height: 80px;
+        font-size: 1.8rem;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 0 10px #800000;
+    }
+
+    .lantern::after {
+        height: 25px;
+        bottom: -25px;
+        width: 3px;
+    }
+
+    .lantern::before {
+        height: 10px;
+        top: -10px;
+        width: 3px;
+    }
+
+    #timer {
+        font-size: 2rem; /* 缩小倒计时数字 */
+        margin-top: 10px;
+    }
+
+    .countdown {
+        font-size: 1rem;
+        min-height: 100px;
+        margin-top: 15px;
+    }
+    
+    .new-year-text {
+        font-size: 2.2rem; /* 缩小新年快乐文字 */
+    }
+
+    .frame {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .frame::before, .frame::after {
+        font-size: 20px;
+        top: -10px;
+        left: -10px;
+    }
+    
+    .frame::after {
+        bottom: -10px;
+        right: -10px;
+    }
+}
