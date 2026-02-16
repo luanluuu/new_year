@@ -3,34 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>除夕快乐！</title>
+    <meta name="description" content="2026农历新年除夕倒计时网页，包含精美的烟花特效和传统节日氛围。">
+    <meta name="keywords" content="除夕, 新年, 倒计时, 烟花, 2026, 农历新年, 春节">
+    <meta name="author" content="Chuxi Happy">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chuxi-happy.vercel.app/">
+    <meta property="og:title" content="除夕快乐 - 2026农历新年倒计时">
+    <meta property="og:description" content="辞旧迎新，万事如意。一起来倒数迎接农历新年！">
+    <meta property="og:image" content="https://chuxi-happy.vercel.app/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://chuxi-happy.vercel.app/">
+    <meta property="twitter:title" content="除夕快乐 - 2026农历新年倒计时">
+    <meta property="twitter:description" content="辞旧迎新，万事如意。一起来倒数迎接农历新年！">
+    <meta property="twitter:image" content="https://chuxi-happy.vercel.app/og-image.jpg">
+
+    <title>除夕快乐 | 2026农历新年倒计时</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧨</text></svg>">
 </head>
 <body>
     <div class="mountains"></div>
     <div class="skyline"></div>
     <div class="frame"></div>
     
-    <div class="container">
+    <main class="container">
         <div class="lantern-box">
             <div class="lantern">福</div>
             <div class="lantern">春</div>
         </div>
         
-        <h1 class="title">除夕快乐</h1>
-        <p class="subtitle">辞旧迎新 · 万事如意</p>
+        <header>
+            <h1 class="title">除夕快乐</h1>
+            <p class="subtitle">辞旧迎新 · 万事如意</p>
+        </header>
         
         <div class="countdown">
             <p>距离农历新年还有</p>
-            <div id="timer">
+            <div id="timer" aria-label="倒计时">
                 <span id="hours">00</span> :
                 <span id="minutes">00</span> :
                 <span id="seconds">00</span>
             </div>
         </div>
-        <p style="margin-top: 10px; font-size: 0.8rem; color: rgba(255,255,255,0.6);">📢 点击屏幕开启音效</p>
-    </div>
+        
+        <div class="audio-tip">
+            <span class="icon">📢</span> 点击屏幕开启音效
+        </div>
+    </main>
     
+    <footer class="copyright">
+        &copy; 2026 Chuxi Happy Project. All rights reserved.
+    </footer>
+
     <canvas id="fireworks"></canvas>
 
     <script src="script.js"></script>
